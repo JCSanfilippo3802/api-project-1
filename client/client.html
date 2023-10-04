@@ -24,6 +24,9 @@
         case 404:
           content.innerHTML = `<b>Resource Not Found</b>`;
           break;
+        case 500:
+          content.innerHTML = `<b>Server Error</b>`;
+          break;
         default: 
           content.innerHTML = `Error code not implemented by client.`;
           break;
@@ -100,8 +103,21 @@
     <form id="nameForm" action="/addUser" method="post">
       <label for="name">Name: </label>
       <input id="nameField" type="text" name="name" />
-      <label for="age">Age: </label>
-      <input id="ageField" type="number" name="age" min="0" max="100" step="1"/>
+      <label for="look">Look: </label>
+      <input id="lookField" type="text" name="look"/>
+      <label for="cool">Cool: </label>
+      <input id="coolField" type="number" name="cool" min="-2" max="3" step="1"/>
+      <label for="hard">Hard: </label>
+      <input id="hardField" type="number" name="hard" min="-2" max="3" step="1"/>
+      <label for="hot">Hot: </label>
+      <input id="hotField" type="number" name="hot" min="-2" max="3" step="1"/>
+      <label for="sharp">Sharp: </label>
+      <input id="sharpField" type="number" name="sharp" min="-2" max="3" step="1"/>
+      <label id="weird">Weird: </label>
+      <input id="weirdField" type="number" name="sharp" min="-2" max="3" step="1"/>
+      
+
+
       <input type="submit" value="Add User" />
     </form>
     <form id="userForm" action="/getUsers" method="get">
