@@ -56,7 +56,8 @@
       const nameAction = nameForm.getAttribute('action');
       const nameMethod = nameForm.getAttribute('method');
       
-      const nameField = nameForm.querySelector('#nameField');
+      const heroNameField = nameForm.querySelector('#heroNameField');
+      const realNameField = nameForm.querySelector('#realNameField');
       const ageField = nameForm.querySelector('#ageField');
 
       const formData = `name=${nameField.value}&age=${ageField.value}`;
@@ -99,24 +100,113 @@
 </head>
 <body>
   <section id="top">
-    <h3>POST Status Code Tests</h3>
+    <h3>MASKS character sheet creator</h3>
     <form id="nameForm" action="/addUser" method="post">
-      <label for="name">Name: </label>
-      <input id="nameField" type="text" name="name" />
-      <label for="look">Look: </label>
-      <input id="lookField" type="text" name="look"/>
-      <label for="cool">Cool: </label>
-      <input id="coolField" type="number" name="cool" min="-2" max="3" step="1"/>
-      <label for="hard">Hard: </label>
-      <input id="hardField" type="number" name="hard" min="-2" max="3" step="1"/>
-      <label for="hot">Hot: </label>
-      <input id="hotField" type="number" name="hot" min="-2" max="3" step="1"/>
-      <label for="sharp">Sharp: </label>
-      <input id="sharpField" type="number" name="sharp" min="-2" max="3" step="1"/>
-      <label id="weird">Weird: </label>
-      <input id="weirdField" type="number" name="sharp" min="-2" max="3" step="1"/>
-      
+      <label for="heroName">Hero Name: </label>
+      <input id="heroNameField" type="text" name="heroName" /><br>
+      <label for="realName">Look: </label>
+      <input id="realNameField" type="text" name="realNook"/><br>
 
+      <select id="playbookSelect">
+        <option value="beacon">The Beacon</option>
+        <option value="bull">The Bull</option>
+        <option selected value="delinquent">The Delinquent</option>
+        <option value="doomed">The Doomed</option>
+        <option value="janus">The Janus</option>
+        <option value="legacy">The Legacy</option>
+        <option value="nova">The Nova</option>
+        <option value="outsider">The Outsider</option>
+        <option value="protege">The Protégé</option>
+        <option value="transformed">The Transformed</option>
+      </select>
+
+      <label for="abilities">Abilities: </label>
+      <fieldset name="abilities">
+        <label id="abilityLB0" for="ability0">teleportation</label>
+        <input id="abilityCB0" name="ability0" value='0'><br>
+        <label id="abilityLB1" for="ability1">illusions</label>
+        <input id="abilityCB1" name="ability1" value='1'><br>
+        <label id="abilityLB2" for="ability2">gadgetry and hacking</label>
+        <input id="abilityCB2" name="ability2" value='2'><br>
+        <label id="abilityLB3" for="ability3">psychic weapons</label>
+        <input id="abilityCB3" name="ability3" value='3'><br>
+        <label id="abilityLB4" for="ability4">emotion control</label>
+        <input id="abilityCB4" name="ability4" value='4'><br>
+        <label id="abilityLB5" for="ability5">power negation</label>
+        <input id="abilityCB5" name="ability5" value='5'><br>
+      </fieldset>
+
+      <label for="labels">Labels: </label>
+      <fieldset name="labels">
+        <label for="danger">Danger: </label>
+        <input id="dangerField" type="number" name="danger" min="-2" max="3" step="1" value="-1"/><br>
+        <label for="freak">Freak: </label>
+        <input id="freakField" type="number" name="freak" min="-2" max="3" step="1" value="-1"/><br>
+        <label for="savior">Savior: </label>
+        <input id="saviorField" type="number" name="savior" min="-2" max="3" step="1" value="2"/><br>
+        <label for="superior">Superior: </label>
+        <input id="superiorField" type="number" name="superior" min="-2" max="3" step="1" value="0"/><br>
+        <label id="mundane">Mundane: </label>
+        <input id="mundaneField" type="number" name="mundane" min="-2" max="3" step="1" value="2"/><br>
+      </fieldset>
+      
+      <label for="conditions">Conditions: </label>
+      <fieldset name="conditions">
+        <label for="afraid">Afraid</label>
+        <input id="afraid" name="afraid" value="Afraid"><br>
+        <label for="angry">Angry</label>
+        <input id="angry" name="angry" value="Angry"><br>
+        <label for="guilty">Guilty</label>
+        <input id="guilty" name="guilty" value="Guilty"><br>
+        <label for="hopeless">Hopeless</label>
+        <input id="hopeless" name="hopeless" value="Hopeless"><br>
+        <label for="insecure">Insecure</label>
+        <input id="insecure" name="insecure" value="Insecure"><br>
+      </fieldset>
+
+      <label for="moves">Delinquent Moves: </label>
+      <fieldset id="moves" name="drives">
+        <label id="moveLB0" for="move0">Mary Contrary: When someone tries to pierce
+          your mask, comfort or support you, or provoke
+          you, you can interfere. Roll + Superior. On a hit,
+          they take a -2 on their roll. On a 10+, you also
+          take Influence over them or clear a condition.
+          On a miss, they get a 10+ no matter what they
+          rolled and you mark a condition of their choice. </label>
+        <input id="moveCB0" name="move0" value='0'><br>
+        <label id="moveLB1" for="move1">I don’t care what you think!: Whenever you
+          reject others’ Influence, add +2 to your roll.  </label>
+        <input id="moveCB1" name="move1" value='1'><br>
+        <label id="moveLB2" for="move2">Team? What team?: When you use Team selfishly,
+          clear a condition or mark potential. The first
+          time in a session that you use Team to help a
+          teammate, take +1 forward. </label>
+        <input id="moveCB2" name="move2" value='2'><br>
+        <label id="moveLB3" for="move3">Criminal mind: When you assess the situation,
+          you can always ask one of the following
+          questions, even on a miss:
+          - what here is useful or valuable to me?
+          - how could I best infuriate or provoke
+           ____________?
+          - what’s the best way in/way past? </label>
+        <input id="moveCB3" name="move3" value='3'><br>
+        <label id="moveLB4" for="move4">Troublemaker: When you help a teammate
+          through destructive, criminal, or rule-breaking
+          actions, you can give them a +2 instead of a +1
+          when you spend a Team from the pool. </label>
+        <input id="moveCB4" name="move4" value='4'><br>
+        <label id="moveLB5" for="move5">Are you watching closely?: When you mislead,
+          distract, or trick someone, roll + Superior. On a
+          hit, they are fooled, at least for a moment. On a
+          10+, choose three. On a 7-9, choose two.
+          - you get an opportunity
+          - you expose a weakness or flaw
+          - you confuse them for some time
+          - you avoid further entanglement
+          On a miss, you’re hopelessly embroiled in it and
+          under pressure; mark a condition. </label>
+        <input id="moveCB5" name="move5" value='5'><br>
+      </fieldset>
 
       <input type="submit" value="Add User" />
     </form>
@@ -124,10 +214,6 @@
       <select id='urlField'>
         <option value='/getUsers'>/getUsers</option>
         <option value='/notReal'>/notReal</option>
-      </select>
-      <select id="methodSelect">
-        <option value="get">GET</option>
-        <option value="head">HEAD</option>
       </select>
       <input type="submit" value="Get User" />
     </form>
