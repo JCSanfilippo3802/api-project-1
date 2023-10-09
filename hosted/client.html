@@ -1,113 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>Our simple HTTP server</title>
+  <title>Masks Hero Sheet Creator</title>
   <link rel="stylesheet" type="text/css" href="/style.css">
   
-  <script>
-    const handleResponse = async (response, parseResponse) => {
-      const content = document.querySelector('#content');
-
-      switch(response.status) {
-        case 200: 
-          content.innerHTML = `<b>Success</b>`;
-          break;
-        case 201:
-          content.innerHTML = `<b>Created</b>`;
-          break;
-        case 204:
-          content.innerHTML = `<b>Updated</b>`;
-          break;
-        case 400: 
-          content.innerHTML = `<b>Bad Request</b>`;
-          break;
-        case 404:
-          content.innerHTML = `<b>Resource Not Found</b>`;
-          break;
-        case 500:
-          content.innerHTML = `<b>Server Error</b>`;
-          break;
-        default: 
-          content.innerHTML = `Error code not implemented by client.`;
-          break;
-      }
-
-      if(parseResponse) {
-        let obj = await response.json();
-
-        let jsonString = JSON.stringify(obj);
-        content.innerHTML += `<p>${jsonString}</p>`;
-      }
-    };
-
-    const requestUpdate = async (userForm) => {
-      
-      const url = userForm.querySelector('#urlField').value;
-      const method = userForm.querySelector('#methodSelect').value;
-
-      let response = await fetch(url, {
-        method
-      });
-
-      handleResponse(response, method === 'get');
-    };
-
-    const sendPost = async (nameForm) => {
-      const nameAction = nameForm.getAttribute('action');
-      const nameMethod = nameForm.getAttribute('method');
-      
-      const heroNameField = nameForm.querySelector('#heroNameField');
-      const realNameField = nameForm.querySelector('#realNameField');
-      const ageField = nameForm.querySelector('#ageField');
-
-      const formData = `name=${nameField.value}&age=${ageField.value}`;
-
-      let response = await fetch(nameAction, {
-        method: nameMethod,
-        headers: {
-          'Content-Type': 'application/x-www-form-urlencoded',
-          'Accept': 'application/json',
-        },
-        body: formData,
-      });
-
-      handleResponse(response);
-    };
-
-    const init = () => {
-      const userForm = document.querySelector('#userForm');
-      const nameForm = document.querySelector('#nameForm');
-
-      const getUsers = (e) => {
-        e.preventDefault();
-        requestUpdate(userForm);
-        return false;
-      }
-
-      const addUser = (e) => {
-        e.preventDefault();
-        sendPost(nameForm);
-        return false;
-      }
-
-      userForm.addEventListener('submit', getUsers);
-      nameForm.addEventListener('submit', addUser);
-    };
-
-    window.onload = init;
-
-  </script>
+  <script src="/bundle.js"></script>
 </head>
 <body>
   <section id="top">
-    <h3>MASKS character sheet creator</h3>
-    <form id="nameForm" action="/addUser" method="post">
+    <h3>MASKS hero sheet creator</h3>
+    <form id="nameForm" action="/addHero" method="post">
       <label for="heroName">Hero Name: </label>
       <input id="heroNameField" type="text" name="heroName" /><br>
-      <label for="realName">Look: </label>
+      <label for="realName">Real Name: </label>
       <input id="realNameField" type="text" name="realNook"/><br>
 
-      <select id="playbookSelect">
+      <label for="playbooks">Playbooks:</label>
+      <select name="playbooks" id="playbookSelect">
         <option value="beacon">The Beacon</option>
         <option value="bull">The Bull</option>
         <option selected value="delinquent">The Delinquent</option>
@@ -118,22 +27,22 @@
         <option value="outsider">The Outsider</option>
         <option value="protege">The Protégé</option>
         <option value="transformed">The Transformed</option>
-      </select>
+      </select><br>
 
       <label for="abilities">Abilities: </label>
       <fieldset name="abilities">
         <label id="abilityLB0" for="ability0">teleportation</label>
-        <input id="abilityCB0" name="ability0" value='0'><br>
+        <input id="abilityCB0" name="ability0" type="checkbox" value='0'><br>
         <label id="abilityLB1" for="ability1">illusions</label>
-        <input id="abilityCB1" name="ability1" value='1'><br>
+        <input id="abilityCB1" name="ability1" type="checkbox" value='1'><br>
         <label id="abilityLB2" for="ability2">gadgetry and hacking</label>
-        <input id="abilityCB2" name="ability2" value='2'><br>
+        <input id="abilityCB2" name="ability2" type="checkbox" value='2'><br>
         <label id="abilityLB3" for="ability3">psychic weapons</label>
-        <input id="abilityCB3" name="ability3" value='3'><br>
+        <input id="abilityCB3" name="ability3" type="checkbox" value='3'><br>
         <label id="abilityLB4" for="ability4">emotion control</label>
-        <input id="abilityCB4" name="ability4" value='4'><br>
+        <input id="abilityCB4" name="ability4" type="checkbox" value='4'><br>
         <label id="abilityLB5" for="ability5">power negation</label>
-        <input id="abilityCB5" name="ability5" value='5'><br>
+        <input id="abilityCB5" name="ability5" type="checkbox" value='5'><br>
       </fieldset>
 
       <label for="labels">Labels: </label>
@@ -153,15 +62,15 @@
       <label for="conditions">Conditions: </label>
       <fieldset name="conditions">
         <label for="afraid">Afraid</label>
-        <input id="afraid" name="afraid" value="Afraid"><br>
+        <input id="conditionCB0" name="afraid" type="checkbox" value='0'><br>
         <label for="angry">Angry</label>
-        <input id="angry" name="angry" value="Angry"><br>
+        <input id="conditionCB1" name="angry" type="checkbox" value='1'><br>
         <label for="guilty">Guilty</label>
-        <input id="guilty" name="guilty" value="Guilty"><br>
+        <input id="conditionCB2" name="guilty" type="checkbox" value='2'><br>
         <label for="hopeless">Hopeless</label>
-        <input id="hopeless" name="hopeless" value="Hopeless"><br>
+        <input id="conditionCB3" name="hopeless" type="checkbox" value='3'><br>
         <label for="insecure">Insecure</label>
-        <input id="insecure" name="insecure" value="Insecure"><br>
+        <input id="conditionCB4" name="insecure" type="checkbox" value='4'><br>
       </fieldset>
 
       <label for="moves">Delinquent Moves: </label>
@@ -173,15 +82,15 @@
           take Influence over them or clear a condition.
           On a miss, they get a 10+ no matter what they
           rolled and you mark a condition of their choice. </label>
-        <input id="moveCB0" name="move0" value='0'><br>
+        <input id="moveCB0" name="move0" type="checkbox" value='0'><br>
         <label id="moveLB1" for="move1">I don’t care what you think!: Whenever you
           reject others’ Influence, add +2 to your roll.  </label>
-        <input id="moveCB1" name="move1" value='1'><br>
+        <input id="moveCB1" name="move1" type="checkbox" value='1'><br>
         <label id="moveLB2" for="move2">Team? What team?: When you use Team selfishly,
           clear a condition or mark potential. The first
           time in a session that you use Team to help a
           teammate, take +1 forward. </label>
-        <input id="moveCB2" name="move2" value='2'><br>
+        <input id="moveCB2" name="move2" type="checkbox" value='2'><br>
         <label id="moveLB3" for="move3">Criminal mind: When you assess the situation,
           you can always ask one of the following
           questions, even on a miss:
@@ -189,12 +98,12 @@
           - how could I best infuriate or provoke
            ____________?
           - what’s the best way in/way past? </label>
-        <input id="moveCB3" name="move3" value='3'><br>
+        <input id="moveCB3" name="move3" type="checkbox" value='3'><br>
         <label id="moveLB4" for="move4">Troublemaker: When you help a teammate
           through destructive, criminal, or rule-breaking
           actions, you can give them a +2 instead of a +1
           when you spend a Team from the pool. </label>
-        <input id="moveCB4" name="move4" value='4'><br>
+        <input id="moveCB4" name="move4" type="checkbox" value='4'><br>
         <label id="moveLB5" for="move5">Are you watching closely?: When you mislead,
           distract, or trick someone, roll + Superior. On a
           hit, they are fooled, at least for a moment. On a
@@ -205,17 +114,16 @@
           - you avoid further entanglement
           On a miss, you’re hopelessly embroiled in it and
           under pressure; mark a condition. </label>
-        <input id="moveCB5" name="move5" value='5'><br>
+        <input id="moveCB5" name="move5" type="checkbox" value='5'><br>
       </fieldset>
 
-      <input type="submit" value="Add User" />
+      <input type="submit" value="Add Hero" />
     </form>
-    <form id="userForm" action="/getUsers" method="get">
+    <form id="getForm" action="/getHeros" method="get">
       <select id='urlField'>
-        <option value='/getUsers'>/getUsers</option>
-        <option value='/notReal'>/notReal</option>
+        <option value='/getHeroes'>getHeroes</option>
       </select>
-      <input type="submit" value="Get User" />
+      <input type="submit" value="Get Heroes" />
     </form>
   </section>
   <section id="content">

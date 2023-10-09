@@ -1,4 +1,4 @@
-const users = {};
+const heroes = {};
 
 const respondJSON = (request, response, status, object) => {
   const headers = {
@@ -19,7 +19,7 @@ const respondJSONMeta = (request, response, status) => {
   response.end();
 };
 
-const getUsers = (request, response) => {
+const getHeroes = (request, response) => {
   const responseJSON = {
     users,
   };
@@ -27,22 +27,11 @@ const getUsers = (request, response) => {
   return respondJSON(request, response, 200, responseJSON);
 };
 
-const getUsersMeta = (request, response) => respondJSONMeta(request, response, 200);
+const getHeroesMeta = (request, response) => respondJSONMeta(request, response, 200);
 
-const notReal = (request, response) => {
-  const responseJSON = {
-    message: 'This function is Not Real',
-    id: 'notReal',
-  };
-
-  respondJSON(request, response, 404, responseJSON);
-};
-
-const notRealMeta = (request, response) => respondJSONMeta(request, response, 404);
-
-const addUser = (request, response, data) => {
+const addHero = (request, response, data) => {
   
-  if(!data.name || !data.age)
+  if(!data.heroName || !data.realName)
   {
     const responseJSON = {
       message: 'Please fill out all data fields.',
@@ -52,21 +41,32 @@ const addUser = (request, response, data) => {
     return respondJSON(request, response, 400, responseJSON);
   }
   
-  const newUser = {
-    name: data.name,
-    age: data.age,
+  const newHero = {
+    heroName: data.heroName,
+    realName: data.realName,
+    playbook: data.playbook,
+    abilities: data.abilities,
+    labels: data.labels,
+    conditions: data.conditions,
+    moves: data.moves,
+
     // Good practice
     createdAt: Date.now(),
   };
   
-  if(users[newUser.name]) {
-    users[newUser.name].age = data.age;
+  if(heroes[newHero.heroName]) {
+    heroes[newHero.heroName].realName = data.realName;
+    heroes[newHero.heroName].playbook = data.playbook;
+    heroes[newHero.heroName].abilities = data.abilities;
+    heroes[newHero.heroName].labels = data.labels;
+    heroes[newHero.heroName].conditions = data.conditions;
+    heroes[newHero.heroName].moves = data.moves;
     //Good practice
-    users[newUser.name].updatedOn = newUser.createdAt;
-    return respondJSON(request, response, 204, newUser);
+    heroes[newHero.name].updatedOn = newUser.createdAt;
+    return respondJSON(request, response, 204, newHero);
   } else {
-    users[newUser.name] = newUser;
-    return respondJSON(request, response, 201, newUser);
+    heroes[newHero.heroName] = newHero;
+    return respondJSON(request, response, 201, newHero);
   }
 };
 
@@ -84,11 +84,9 @@ const notFoundMeta = (request, response) => {
 };
 
 module.exports = {
-  getUsers,
-  getUsersMeta,
-  notReal,
-  notRealMeta,
-  addUser,
+  getHeroes,
+  getHeroesMeta,
+  addHero,
   notFound,
   notFoundMeta,
 };
