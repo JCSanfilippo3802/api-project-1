@@ -21,7 +21,7 @@ const respondJSONMeta = (request, response, status) => {
 
 const getHeroes = (request, response) => {
   const responseJSON = {
-    users,
+    heroes,
   };
 
   return respondJSON(request, response, 200, responseJSON);
@@ -62,7 +62,7 @@ const addHero = (request, response, data) => {
     heroes[newHero.heroName].conditions = data.conditions;
     heroes[newHero.heroName].moves = data.moves;
     //Good practice
-    heroes[newHero.name].updatedOn = newUser.createdAt;
+    heroes[newHero.name].updatedOn = newHero.createdAt;
     return respondJSON(request, response, 204, newHero);
   } else {
     heroes[newHero.heroName] = newHero;
