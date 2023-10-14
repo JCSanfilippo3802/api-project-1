@@ -1,15 +1,17 @@
+const jsonHandler = require('./stats.js');
+
 const handleResponse = async (response, parseResponse) => {
     const content = document.querySelector('#content');
 
     switch(response.status) {
       case 200: 
-        content.innerHTML = `<b>Success</b>`;
+        content.innerHTML = `<b>Received Data</b>`;
         break;
       case 201:
-        content.innerHTML = `<b>Created</b>`;
+        content.innerHTML = `<b>Hero Data Entered</b>`;
         break;
       case 204:
-        content.innerHTML = `<b>Updated</b>`;
+        content.innerHTML = `<b>Updated Hero Info</b>`;
         break;
       case 400: 
         content.innerHTML = `<b>Bad Request</b>`;
@@ -26,20 +28,16 @@ const handleResponse = async (response, parseResponse) => {
     }
 
     if(parseResponse) {
-      let obj = await response.json();
-
-      let jsonString = JSON.stringify(obj);
-      content.innerHTML += `<p>${jsonString}</p>`;
+      nameForm.querySelector('#heroNameField').value = parseResponse.heroName;
     }
   };
 
   const requestUpdate = async (userForm) => {
-    
-    const url = userForm.querySelector('#urlField').value;
-    const method = userForm.querySelector('#methodSelect').value;
 
-    let response = await fetch(url, {
-      method
+    const name = userForm.querySelector('#heroNameField')
+
+    let response = await fetch('/getHero', {
+      method: 'GET',
     });
 
     handleResponse(response, method === 'get');
@@ -51,7 +49,6 @@ const handleResponse = async (response, parseResponse) => {
     
     const heroNameField = nameForm.querySelector('#heroNameField');
     const realNameField = nameForm.querySelector('#realNameField');
-    const playbookField = nameForm.querySelector('#playbookSelector');
 
     const abilities = [];
     for(i = 0; i < 6; i++)
@@ -82,7 +79,7 @@ const handleResponse = async (response, parseResponse) => {
       }
     }
 
-    const formData = `heroName=${heroNameField.value}&realName=${realNameField.value}&playbook=${playbookField.value}&abilities=${abilities}&labels=${labels}&conditions=${conditions}&moves=${moves}`;
+    const formData = `heroName=${heroNameField.value}&realName=${realNameField.value}&abilities=${abilities}&labels=${labels}&conditions=${conditions}&moves=${moves}`;
 
     let response = await fetch(nameAction, {
       method: nameMethod,
@@ -97,10 +94,10 @@ const handleResponse = async (response, parseResponse) => {
   };
 
   const init = () => {
-    const userForm = document.querySelector('#userForm');
-    const nameForm = document.querySelector('#nameForm');
+    const userForm = document.getElementById('getForm');
+    const nameForm = document.getElementById('nameForm');
 
-    const getHeroes = (e) => {
+    const getHero = (e) => {
       e.preventDefault();
       requestUpdate(userForm);
       return false;
@@ -112,7 +109,7 @@ const handleResponse = async (response, parseResponse) => {
       return false;
     }
 
-    userForm.addEventListener('submit', getHeroes);
+    userForm.addEventListener('submit', getHero);
     nameForm.addEventListener('submit', addHero);
   };
 

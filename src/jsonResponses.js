@@ -19,7 +19,7 @@ const respondJSONMeta = (request, response, status) => {
   response.end();
 };
 
-const getHeroes = (request, response) => {
+const getHero = (request, response, params) => {
   const responseJSON = {
     heroes,
   };
@@ -84,7 +84,7 @@ const notFoundMeta = (request, response) => {
 };
 
 module.exports = {
-  getHeroes,
+  getHero,
   getHeroesMeta,
   addHero,
   notFound,

@@ -15,34 +15,20 @@
       <label for="realName">Real Name: </label>
       <input id="realNameField" type="text" name="realNook"/><br>
 
-      <label for="playbooks">Playbooks:</label>
-      <select name="playbooks" id="playbookSelect">
-        <option value="beacon">The Beacon</option>
-        <option value="bull">The Bull</option>
-        <option selected value="delinquent">The Delinquent</option>
-        <option value="doomed">The Doomed</option>
-        <option value="janus">The Janus</option>
-        <option value="legacy">The Legacy</option>
-        <option value="nova">The Nova</option>
-        <option value="outsider">The Outsider</option>
-        <option value="protege">The Protégé</option>
-        <option value="transformed">The Transformed</option>
-      </select><br>
-
       <label for="abilities">Abilities: </label>
       <fieldset name="abilities">
-        <label id="abilityLB0" for="ability0">teleportation</label>
-        <input id="abilityCB0" name="ability0" type="checkbox" value='0'><br>
-        <label id="abilityLB1" for="ability1">illusions</label>
-        <input id="abilityCB1" name="ability1" type="checkbox" value='1'><br>
-        <label id="abilityLB2" for="ability2">gadgetry and hacking</label>
-        <input id="abilityCB2" name="ability2" type="checkbox" value='2'><br>
-        <label id="abilityLB3" for="ability3">psychic weapons</label>
-        <input id="abilityCB3" name="ability3" type="checkbox" value='3'><br>
-        <label id="abilityLB4" for="ability4">emotion control</label>
-        <input id="abilityCB4" name="ability4" type="checkbox" value='4'><br>
-        <label id="abilityLB5" for="ability5">power negation</label>
-        <input id="abilityCB5" name="ability5" type="checkbox" value='5'><br>
+      <label id="abilityLB0" for="ability0">teleportation</label>
+      <input id="abilityCB0" name="ability0" type="checkbox" value='0'><br>
+      <label id="abilityLB1" for="ability1">illusions</label>
+      <input id="abilityCB1" name="ability1" type="checkbox" value='1'><br>
+      <label id="abilityLB2" for="ability2">gadgetry and hacking</label>
+      <input id="abilityCB2" name="ability2" type="checkbox" value='2'><br>
+      <label id="abilityLB3" for="ability3">psychic weapons</label>
+      <input id="abilityCB3" name="ability3" type="checkbox" value='3'><br>
+      <label id="abilityLB4" for="ability4">emotion control</label>
+      <input id="abilityCB4" name="ability4" type="checkbox" value='4'><br>
+      <label id="abilityLB5" for="ability5">power negation</label>
+      <input id="abilityCB5" name="ability5" type="checkbox" value='5'><br>
       </fieldset>
 
       <label for="labels">Labels: </label>
@@ -73,7 +59,7 @@
         <input id="conditionCB4" name="insecure" type="checkbox" value='4'><br>
       </fieldset>
 
-      <label for="moves">Delinquent Moves: </label>
+      <label id="movesLabel" for="moves"> Delinquent Moves: </label>
       <fieldset id="moves" name="drives">
         <label id="moveLB0" for="move0">Mary Contrary: When someone tries to pierce
           your mask, comfort or support you, or provoke
@@ -119,11 +105,10 @@
 
       <input type="submit" value="Add Hero" />
     </form>
-    <form id="getForm" action="/getHeroes" method="get">
-      <select id='urlField'>
-        <option value='/getHeroes'>getHeroes</option>
-      </select>
-      <input type="submit" value="Get Heroes" />
+    <form id="getForm" action="/getHero" method="get">
+      <label for="heroName">Hero Name: </label>
+      <input name="heroName" id="heroNameField" type="text"/>
+      <input type="submit" value="Get Hero" />
     </form>
   </section>
   <section id="content">

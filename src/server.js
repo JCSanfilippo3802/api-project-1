@@ -13,11 +13,11 @@ const urlStruct = {
     '/favicon.ico': htmlHandler.getIndex,
     '/style.css': htmlHandler.getStyle,
     '/bundle.js': htmlHandler.getBundle,
-    '/getHeroes': jsonHandler.getHeroes,
+    '/getHero': jsonHandler.getHero,
     notFound: jsonHandler.notFound,
   },
   'HEAD': {
-    '/getHeroes': jsonHandler.getHeroesMeta,
+    '/getHero': jsonHandler.getHeroesMeta,
     notFound: jsonHandler.notFoundMeta,
   },
   'POST': {
