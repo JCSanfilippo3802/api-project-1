@@ -1,11 +1,16 @@
 @import url('https://fonts.googleapis.com/css2?family=Tilt+Neon&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@500&display=swap');
 
 html, body {
   height: 100%;
   width: 100%;
   margin: 0;
-  padding: 0;
+  padding: 1%;
   background-color: cornflowerblue;
+}
+
+h3, #addHeroButton {
+  font-family: "Oswald", sans-serif;
 }
 
 #top {
@@ -31,12 +36,19 @@ fieldset {
   font-family:"Tilty+Neon",serif;
 }
 
+#top {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 #nameForm {
   display: flex;
   flex-direction: row;
   align-items:center;
   justify-content: center;
   height: 50%;
+  width: 80%;
 }
 
 #moves {
@@ -44,13 +56,33 @@ fieldset {
   width: 40%;
 }
 
+#topBox{
+  display: flex;
+  flex-direction:row;
+  align-items:center;
+  justify-content: left;
+}
+
+#addHeroButton{
+  font-size: 3em;
+  width: 60%;
+}
+
 @media screen and (max-width: 1000px){
   #nameForm {
     display: flex;
     flex-direction: column;
-    align-items:center;
+    align-items:top;
     justify-content: center;
     height: 50%;
+    width: 95%;
+  }
+
+  #topBox{
+    display: flex;
+    flex-direction:row;
+    align-items:top;
+    justify-content: left;
   }
   
   #moves {

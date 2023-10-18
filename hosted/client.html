@@ -10,15 +10,13 @@
   <section id="top">
     <h3>MASKS hero sheet creator</h3>
     <form id="nameForm" action="/addHero" method="post">
-      <div id="names">
-        <label for="heroName">Hero Name: </label>
+      <div id="left">
+        <h3 for="heroName">Hero Name: </h3>
         <input id="heroNameField" type="text" name="heroName" /><br>
-        <label for="realName">Real Name: </label>
+        <h3 for="realName">Real Name: </h3>
         <input id="realNameField" type="text" name="realNook"/><br>
-      </div>
 
-      <div id="labels">
-        <label for="abilities">Abilities: </label>
+        <h3 for="abilities">Abilities: </h3>
         <fieldset name="abilities">
           <label id="abilityLB0" for="ability0">teleportation</label>
           <input id="abilityCB0" name="ability0" type="checkbox" value='0'><br>
@@ -33,38 +31,42 @@
           <label id="abilityLB5" for="ability5">power negation</label>
           <input id="abilityCB5" name="ability5" type="checkbox" value='5'><br>
         </fieldset>
-
-        <label for="labels">Labels: </label>
-        <fieldset name="labels">
-          <label for="danger">Danger: </label>
-          <input id="dangerField" type="number" name="danger" min="-2" max="3" step="1" value="-1"/><br>
-          <label for="freak">Freak: </label>
-          <input id="freakField" type="number" name="freak" min="-2" max="3" step="1" value="-1"/><br>
-          <label for="savior">Savior: </label>
-          <input id="saviorField" type="number" name="savior" min="-2" max="3" step="1" value="2"/><br>
-          <label for="superior">Superior: </label>
-          <input id="superiorField" type="number" name="superior" min="-2" max="3" step="1" value="0"/><br>
-          <label id="mundane">Mundane: </label>
-          <input id="mundaneField" type="number" name="mundane" min="-2" max="3" step="1" value="2"/><br>
-        </fieldset>
-
-        <label for="conditions">Conditions: </label>
-        <fieldset name="conditions">
-          <label for="afraid">Afraid</label>
-          <input id="conditionCB0" name="afraid" type="checkbox" value='0'><br>
-          <label for="angry">Angry</label>
-          <input id="conditionCB1" name="angry" type="checkbox" value='1'><br>
-          <label for="guilty">Guilty</label>
-          <input id="conditionCB2" name="guilty" type="checkbox" value='2'><br>
-          <label for="hopeless">Hopeless</label>
-          <input id="conditionCB3" name="hopeless" type="checkbox" value='3'><br>
-          <label for="insecure">Insecure</label>
-          <input id="conditionCB4" name="insecure" type="checkbox" value='4'><br>
-        </fieldset>
       </div>
 
-      <div id="moves">
-        <label id="movesLabel" for="moves"> Delinquent Moves: </label>
+      <div id="right">
+        <div id="topBox">
+          <h3 for="labels">Labels: </h3>
+          <fieldset name="labels">
+            <label for="danger">Danger: </label>
+            <input id="dangerField" type="number" name="danger" min="-2" max="3" step="1" value="-1"/><br>
+            <label for="freak">Freak: </label>
+            <input id="freakField" type="number" name="freak" min="-2" max="3" step="1" value="-1"/><br>
+            <label for="savior">Savior: </label>
+            <input id="saviorField" type="number" name="savior" min="-2" max="3" step="1" value="2"/><br>
+            <label for="superior">Superior: </label>
+            <input id="superiorField" type="number" name="superior" min="-2" max="3" step="1" value="0"/><br>
+            <label id="mundane">Mundane: </label>
+            <input id="mundaneField" type="number" name="mundane" min="-2" max="3" step="1" value="2"/><br>
+          </fieldset>
+
+          <h3 for="conditions">Conditions: </h3>
+          <fieldset name="conditions">
+            <label for="afraid">Afraid</label>
+            <input id="conditionCB0" name="afraid" type="checkbox" value='0'><br>
+            <label for="angry">Angry</label>
+            <input id="conditionCB1" name="angry" type="checkbox" value='1'><br>
+            <label for="guilty">Guilty</label>
+            <input id="conditionCB2" name="guilty" type="checkbox" value='2'><br>
+            <label for="hopeless">Hopeless</label>
+            <input id="conditionCB3" name="hopeless" type="checkbox" value='3'><br>
+            <label for="insecure">Insecure</label>
+            <input id="conditionCB4" name="insecure" type="checkbox" value='4'><br>
+          </fieldset>
+
+          <input id="addHeroButton" type="submit" value="Add Hero" />
+        </div>
+        
+        <h3 id="movesLabel" for="moves"> Delinquent Moves: </h3>
         <fieldset name="moves">
           <label id="moveLB0" for="move0">Mary Contrary: When someone tries to pierce
           your mask, comfort or support you, or provoke
@@ -108,10 +110,9 @@
           <input id="moveCB5" name="move5" type="checkbox" value='5'><br>
         </fieldset>
       </div>
-
-      <input type="submit" value="Add Hero" />
     </form>
-    <form id="getForm" action="/getHero" method="get">
+    <h2 for="getHero">Get Hero Data</h2>
+    <form id="getForm" name="getHero" action="/getHero" method="get">
       <label for="heroName">Hero Name: </label>
       <input name="heroName" id="heroNameField" type="text"/>
       <input type="submit" value="Get Hero" />
