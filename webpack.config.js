@@ -5,7 +5,7 @@ module.exports = {
     entry: './client/client.js',
     mode: 'development',
 
-    watch: true,
+    watch: process.env.NODE_ENV !== 'production' && true,
     watchOptions: {
         aggregateTimeout: 200,
     },
