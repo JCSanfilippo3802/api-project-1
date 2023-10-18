@@ -20,10 +20,10 @@ const getStyle = (request, response) => {
 
 const getBundle = (request, response) => {
   serveFile(response, bundle, 'application/javascript');
-}
+};
 
 module.exports = {
   getIndex,
   getStyle,
-  getBundle
+  getBundle,
 };
